@@ -70,6 +70,16 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
     }
 
+    
+    @IBAction func onProfilePressed(sender: AnyObject) {
+        let cell = sender.superview?!.superview as! TweetTableViewCell
+        self.performSegueWithIdentifier("profileSegue", sender: cell)
+    }
+    
+    @IBAction func onMenuPressed(sender: AnyObject) {
+        NSNotificationCenter.defaultCenter().postNotificationName("toggleMenuTappedNotification", object: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -88,7 +98,12 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let myTweet = tweets![indexPath!.row]
             
             detailVC.myTweet = myTweet
+        }
+        if segue.identifier == "profileSegue" {
+            let detailVC = segue.destinationViewController as! ProfileViewController
+            let cell = sender as! TweetTableViewCell
             
+            detailVC.myUser = cell.myUser!
         }
     }
 

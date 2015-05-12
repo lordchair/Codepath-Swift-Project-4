@@ -60,8 +60,8 @@ class TweetTableViewCell: UITableViewCell {
         if var contStr = myTweet!.text as String? {
             contentLabel.text = contStr
         }
-        
-        
     }
+    
+    
 
 }
